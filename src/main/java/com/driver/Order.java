@@ -5,15 +5,25 @@ public class Order {
     private String id;
     private int deliveryTime;
 
-    public Order(String id, String deliveryTime) {
+    public Order() {} // No-arg constructor
 
-        // The deliveryTime has to converted from string to int and then stored in the attribute
-        //deliveryTime  = HH*60 + MM
+    public Order(String id, String deliveryTime) {
+        this.id = id;
+        this.deliveryTime = convertToMinutes(deliveryTime);
+    }
+
+    private int convertToMinutes(String time) {
+        String[] parts = time.split(":");
+        int hour = Integer.parseInt(parts[0]);
+        int minute = Integer.parseInt(parts[1]);
+        return hour * 60 + minute;
     }
 
     public String getId() {
         return id;
     }
 
-    public int getDeliveryTime() {return deliveryTime;}
+    public int getDeliveryTime() {
+        return deliveryTime;
+    }
 }
